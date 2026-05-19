@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SiLaras PK — Dashboard Pembimbing Kemasyarakatan</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/dist/tabler-icons.min.css">
+<style>
+:root {
+  --navy: #0B3D6B;
+  --navy-deep: #072A4E;
+  --navy-mid: #0E4F8A;
+  --blue: #1565C0;
+  --blue-mid: #1976D2;
+  --blue-light: #E3F0FC;
+  --blue-pale: #F0F7FF;
+  --accent: #F5A623;
+  --accent-light: #FEF3DC;
+  --green: #1B8A5A;
+  --green-light: #E6F7EF;
+  --red: #C0392B;
+  --red-light: #FDECEA;
+  --purple: #6B21A8;
+  --purple-light: #F3E8FF;
+  --gray-50: #F8F9FC;
+  --gray-100: #EEF0F5;
+  --gray-200: #DDE0EA;
+  --gray-300: #C5C9D6;
+  --gray-400: #9EA5B8;
+  --gray-600: #5A6278;
+  --gray-800: #2D3347;
+  --gray-900: #181D2E;
+  --white: #FFFFFF;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --shadow-sm: 0 1px 3px rgba(11,61,107,0.08), 0 1px 2px rgba(11,61,107,0.04);
+  --shadow-md: 0 4px 16px rgba(11,61,107,0.1), 0 2px 6px rgba(11,61,107,0.06);
+  --shadow-lg: 0 12px 40px rgba(11,61,107,0.14), 0 4px 12px rgba(11,61,107,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--gray-50); color: var(--gray-800); line-height: 1.6; min-height: 100vh; }
+
+/* ===== LOGIN ===== */
+.login-wrap { min-height: 100vh; display: flex; background: var(--navy-deep); }
+.login-left {
+  flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem;
+  background: linear-gradient(145deg, var(--navy-deep) 0%, var(--navy-mid) 60%, var(--blue) 100%);
+  position: relative; overflow: hidden;
+}
+.login-left::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(21,101,192,0.3) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(245,166,35,0.1) 0%, transparent 50%);
+}
+.login-left::after {
+  content: ''; position: absolute; top: -100px; right: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  border: 60px solid rgba(255,255,255,0.03);
+}
+.login-left-content { position: relative; max-width: 400px; }
+.pk-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(245,166,35,0.15); border: 1px solid rgba(245,166,35,0.3);
+  border-radius: 100px; padding: 6px 14px; margin-bottom: 2rem;
+}
+.pk-badge span { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+.login-left-content h1 {
+  font-family: var(--font-display); font-size: 42px; font-weight: 600;
+  color: #fff; line-height: 1.15; margin-bottom: 1rem;
+}
+.login-left-content h1 em { font-style: italic; color: rgba(255,255,255,0.5); }
+.login-left-content p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 2rem; }
+.feature-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px; padding: 5px 12px; font-size: 12px; color: rgba(255,255,255,0.7);
+}
+.pill i { font-size: 14px; color: #4ADE80; }
+
+.login-right {
+  width: 460px; flex-shrink: 0; background: var(--white);
+  display: flex; align-items: center; justify-content: center; padding: 3rem;
+}
+.login-form-wrap { width: 100%; max-width: 340px; }
+.login-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 2rem; }
+.login-logo-icon {
+  width: 44px; height: 44px; background: var(--navy);
+  border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
+}
+.login-logo-icon i { color: #fff; font-size: 22px; }
+.login-logo div strong { font-size: 18px; font-weight: 800; color: var(--navy); display: block; }
+.login-logo div span { font-size: 11px; color: var(--gray-400); letter-spacing: 0.5px; }
+.login-form-wrap h2 { font-size: 22px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+.login-form-wrap > p { font-size: 13px; color: var(--gray-400); margin-bottom: 2rem; }
+.form-group { margin-bottom: 14px; }
+.form-group label { font-size: 11px; font-weight: 700; color: var(--gray-600); letter-spacing: 0.5px; text-transform: uppercase; display: block; margin-bottom: 5px; }
+.input-wrap { position: relative; }
+.input-wrap i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--gray-300); pointer-events: none; }
+.input-wrap input {
+  width: 100%; padding: 11px 12px 11px 40px; border-radius: var(--radius-md);
+  border: 1.5px solid var(--gray-200); font-size: 14px; color: var(--gray-800);
+  font-family: var(--font-body); background: var(--gray-50); outline: none; transition: all 0.15s;
+}
+.input-wrap input:focus { border-color: var(--blue-mid); background: var(--white); box-shadow: 0 0 0 3px rgba(25,118,210,0.1); }
+.info-box { background: var(--blue-light); border: 1px solid #B3D4F5; border-radius: var(--radius-md); padding: 10px 12px; font-size: 12px; color: var(--blue); margin-bottom: 1rem; line-height: 1.5; }
+.btn-login {
+  width: 100%; background: var(--navy); color: #fff; border: none;
+  border-radius: var(--radius-md); padding: 13px; font-size: 14px; font-weight: 700;
+  font-family: var(--font-body); cursor: pointer; display: flex; align-items: center;
+  justify-content: center; gap: 8px; transition: background 0.15s; margin-top: 1.5rem;
+}
+.btn-login:hover { background: var(--navy-mid); }
+
+/* ===== APP SHELL ===== */
+#main-app { display: none; min-height: 100vh; }
+
+/* ===== TOPBAR ===== */
+.topbar {
+  height: 60px; background: var(--navy); display: flex; align-items: center;
+  padding: 0 1.5rem; position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.topbar-brand { display: flex; align-items: center; gap: 10px; flex: 1; }
+.topbar-logo {
+  width: 36px; height: 36px; background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+}
+.topbar-logo i { color: #fff; font-size: 18px; }
+.topbar-title strong { font-size: 15px; font-weight: 700; color: #fff; display: block; }
+.topbar-title span { font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 0.5px; }
+.topbar-center { flex: 1; display: flex; justify-content: center; }
+.pk-mode-badge {
+  background: rgba(245,166,35,0.2); border: 1px solid rgba(245,166,35,0.35);
+  border-radius: 100px; padding: 4px 14px; font-size: 11px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px;
+}
+.topbar-right { display: flex; align-items: center; gap: 8px; }
+.topbar-icon-btn {
+  width: 36px; height: 36px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: #fff; font-size: 18px; position: relative; transition: background 0.15s;
+}
+.topbar-icon-btn:hover { background: rgba(255,255,255,0.18); }
+.notif-dot { position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; border: 1.5px solid var(--navy); }
+.user-chip { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; padding: 4px 12px 4px 5px; cursor: pointer; }
+.user-av { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--navy); }
+.user-chip span { font-size: 13px; color: #fff; font-weight: 500; }
+
+/* ===== LAYOUT ===== */
+.body-wrap { display: flex; }
+.sidebar {
+  width: 240px; flex-shrink: 0; background: var(--white);
+  border-right: 1px solid var(--gray-200); padding: 1.25rem 0.875rem;
+  position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto;
+  display: flex; flex-direction: column;
+}
+.sidebar-group { margin-bottom: 1.5rem; }
+.sidebar-label { font-size: 10px; font-weight: 700; color: var(--gray-400); letter-spacing: 1px; text-transform: uppercase; padding: 0 10px; margin-bottom: 6px; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px; padding: 9px 10px;
+  border-radius: var(--radius-md); cursor: pointer; color: var(--gray-600);
+  font-size: 13.5px; font-weight: 500; transition: all 0.15s; position: relative;
+  text-decoration: none;
+}
+.nav-item i { font-size: 18px; flex-shrink: 0; }
+.nav-item:hover { background: var(--gray-50); color: var(--gray-800); }
+.nav-item.active { background: var(--blue-light); color: var(--blue); }
+.nav-item.active i { color: var(--blue); }
+.nav-badge { margin-left: auto; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 100px; }
+.nb-red { background: var(--red-light); color: var(--red); }
+.nb-green { background: var(--green-light); color: var(--green); }
+.nb-amber { background: var(--accent-light); color: #7D4E00; }
+
+.sidebar-footer { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--gray-100); }
+.pk-profile-card {
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  border-radius: var(--radius-lg); padding: 1rem; color: #fff;
+}
+.pk-profile-card .av { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.pk-profile-card strong { font-size: 13px; font-weight: 700; display: block; }
+.pk-profile-card span { font-size: 11px; color: rgba(255,255,255,0.6); }
+.pk-profile-card .klien-count { margin-top: 10px; background: rgba(255,255,255,0.1); border-radius: var(--radius-sm); padding: 6px 10px; font-size: 12px; color: rgba(255,255,255,0.8); text-align: center; }
+.pk-profile-card .klien-count strong { font-size: 20px; color: var(--accent); display: inline; font-weight: 800; }
+
+/* ===== MAIN ===== */
+.main { flex: 1; overflow-x: hidden; }
+.page { display: none; padding: 2rem; animation: fadeUp 0.2s ease; }
+.page.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.page-header { margin-bottom: 2rem; }
+.page-header h1 { font-family: var(--font-display); font-size: 26px; font-weight: 600; color: var(--gray-900); margin-bottom: 4px; }
+.page-header p { font-size: 14px; color: var(--gray-400); }
+
+/* ===== STAT CARDS ===== */
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 2rem; }
+.stat-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 1.25rem; box-shadow: var(--shadow-sm); position: relative; overflow: hidden; }
+.stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.stat-card.s-blue::before { background: var(--blue); }
+.stat-card.s-green::before { background: var(--green); }
+.stat-card.s-red::before { background: var(--red); }
+.stat-card.s-amber::before { background: var(--accent); }
+.stat-icon { width: 40px; height: 40px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px; }
+.stat-card .val { font-size: 28px; font-weight: 800; color: var(--gray-900); line-height: 1; margin-bottom: 4px; }
+.stat-card .lbl { font-size: 12px; color: var(--gray-400); font-weight: 500; }
+.stat-card .sub { font-size: 11px; margin-top: 6px; font-weight: 600; }
+.sub-green { color: var(--green); }
+.sub-red { color: var(--red); }
+.sub-amber { color: #D08000; }
+
+/* ===== SECTION ===== */
+.section-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.section-row h2 { font-size: 15px; font-weight: 700; color: var(--gray-800); display: flex; align-items: center; gap: 8px; }
+.section-row h2 i { color: var(--blue); }
+.link-btn { font-size: 12px; color: var(--blue); font-weight: 600; cursor: pointer; background: none; border: none; }
+
+/* ===== CARD ===== */
+.card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: 1.5rem; }
+.card-head { padding: 1rem 1.25rem; border-bottom: 1px solid var(--gray-100); display: flex; align-items: center; gap: 10px; }
+.card-head i { font-size: 20px; color: var(--blue); }
+.card-head h3 { font-size: 15px; font-weight: 600; color: var(--gray-800); }
+.card-head .ml { margin-left: auto; }
+.card-body { padding: 1.25rem; }
+
+/* ===== KLIEN TABLE ===== */
+.klien-table { width: 100%; border-collapse: collapse; }
+.klien-table th { font-size: 11px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--gray-100); }
+.klien-table td { padding: 12px; border-bottom: 1px solid var(--gray-100); font-size: 13px; color: var(--gray-800); vertical-align: middle; }
+.klien-table tr:last-child td { border-bottom: none; }
+.klien-table tr:hover td { background: var(--gray-50); }
+.klien-av { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0; }
+.klien-name { display: flex; align-items: center; gap: 10px; }
+.klien-name strong { font-size: 13px; font-weight: 600; color: var(--gray-800); display: block; }
+.klien-name span { font-size: 11px; color: var(--gray-400); }
+
+/* ===== STATUS BADGES ===== */
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; }
+.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+.b-sudah { background: var(--green-light); color: var(--green); }
+.b-sudah::before { background: var(--green); }
+.b-belum { background: var(--red-light); color: var(--red); }
+.b-belum::before { background: var(--red); }
+.b-terlambat { background: var(--accent-light); color: #7D4E00; }
+.b-terlambat::before { background: var(--accent); }
+.b-pb { background: var(--blue-light); color: var(--blue); }
+.b-pb::before { background: var(--blue); }
+.b-cb { background: var(--purple-light); color: var(--purple); }
+.b-cb::before { background: var(--purple); }
+.b-proses { background: #FFF3CD; color: #856404; }
+.b-proses::before { background: #FFC107; }
+.b-aktif { background: var(--green-light); color: var(--green); }
+
+/* ===== ACTION BUTTONS ===== */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--radius-md); font-size: 13px; font-weight: 600; cursor: pointer; border: none; font-family: var(--font-body); transition: all 0.15s; }
+.btn-primary { background: var(--navy); color: #fff; }
+.btn-primary:hover { background: var(--navy-mid); }
+.btn-outline { background: none; color: var(--gray-600); border: 1px solid var(--gray-200); }
+.btn-outline:hover { background: var(--gray-50); }
+.btn-sm { padding: 5px 10px; font-size: 12px; border-radius: var(--radius-sm); }
+.btn-green { background: var(--green); color: #fff; }
+.btn-red { background: var(--red); color: #fff; }
+
+/* ===== ALERT ===== */
+.alert { border-radius: var(--radius-lg); padding: 1rem 1.25rem; display: flex; gap: 12px; margin-bottom: 1.5rem; border: 1px solid; }
+.alert i { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.alert strong { font-size: 13px; font-weight: 700; display: block; margin-bottom: 2px; }
+.alert p { font-size: 12px; }
+.alert-red { background: var(--red-light); border-color: #F1948A; }
+.alert-red i, .alert-red strong { color: var(--red); }
+.alert-red p { color: #922B21; }
+.alert-amber { background: var(--accent-light); border-color: var(--accent); }
+.alert-amber i, .alert-amber strong { color: #D08000; }
+.alert-amber p { color: #7D4E00; }
+.alert-green { background: var(--green-light); border-color: #82E0AA; }
+.alert-green i, .alert-green strong { color: var(--green); }
+.alert-green p { color: #0D5535; }
+
+/* ===== NOTIFIKASI LIST ===== */
+.notif-item { display: flex; gap: 12px; padding: 14px; border-radius: var(--radius-md); border: 1px solid; margin-bottom: 8px; }
+.notif-item.unread { background: var(--blue-light); border-color: #B3D4F5; }
+.notif-item.read { background: var(--gray-50); border-color: var(--gray-100); }
+.notif-ico { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.ni-red { background: var(--red-light); color: var(--red); }
+.ni-green { background: var(--green-light); color: var(--green); }
+.ni-amber { background: var(--accent-light); color: #D08000; }
+.ni-blue { background: var(--blue-light); color: var(--blue); }
+.notif-item strong { font-size: 13px; font-weight: 700; color: var(--gray-800); display: block; margin-bottom: 3px; }
+.notif-item p { font-size: 12px; color: var(--gray-600); line-height: 1.5; }
+.notif-time { font-size: 11px; color: var(--gray-400); margin-top: 4px; display: block; }
+
+/* ===== PROGRESS BAR ===== */
+.prog-wrap { margin-bottom: 14px; }
+.prog-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-600); margin-bottom: 5px; }
+.prog-label strong { color: var(--gray-800); }
+.prog-bar { height: 8px; background: var(--gray-100); border-radius: 100px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 100px; transition: width 0.5s ease; }
+
+/* ===== GRID 2 COL ===== */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+
+/* ===== DETAIL PANEL ===== */
+.detail-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: 13px; }
+.detail-row:last-child { border-bottom: none; }
+.detail-row span { color: var(--gray-400); }
+.detail-row strong { color: var(--gray-800); text-align: right; }
+
+/* ===== TIMELINE ===== */
+.tl { display: flex; flex-direction: column; }
+.tl-item { display: flex; gap: 12px; padding-bottom: 1rem; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-left { display: flex; flex-direction: column; align-items: center; width: 32px; flex-shrink: 0; }
+.tl-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.tl-dot.green { background: var(--green-light); color: var(--green); }
+.tl-dot.blue { background: var(--blue-light); color: var(--blue); }
+.tl-dot.amber { background: var(--accent-light); color: #D08000; }
+.tl-dot.red { background: var(--red-light); color: var(--red); }
+.tl-line { flex: 1; width: 2px; background: var(--gray-100); min-height: 16px; }
+.tl-item:last-child .tl-line { display: none; }
+.tl-content { flex: 1; padding-top: 4px; }
+.tl-content strong { font-size: 13px; font-weight: 600; color: var(--gray-800); display: block; }
+.tl-content p { font-size: 12px; color: var(--gray-400); }
+
+/* ===== FORM ===== */
+.form-grid { display: grid; gap: 1rem; }
+.form-grid.g2 { grid-template-columns: 1fr 1fr; }
+.fg { display: flex; flex-direction: column; gap: 5px; }
+.fg label { font-size: 11px; font-weight: 700; color: var(--gray-600); letter-spacing: 0.3px; text-transform: uppercase; }
+.fg input, .fg select, .fg textarea {
+  font-family: var(--font-body); padding: 10px 12px; border-radius: var(--radius-md);
+  border: 1.5px solid var(--gray-200); font-size: 14px; color: var(--gray-800);
+  background: var(--white); outline: none; transition: border-color 0.15s;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--blue-mid); box-shadow: 0 0 0 3px rgba(25,118,210,0.1); }
+.fg textarea { resize: vertical; min-height: 80px; }
+
+/* ===== SEARCH BOX ===== */
+.search-wrap { position: relative; }
+.search-wrap i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--gray-300); }
+.search-wrap input { width: 100%; padding: 10px 12px 10px 40px; border-radius: var(--radius-md); border: 1.5px solid var(--gray-200); font-size: 14px; font-family: var(--font-body); outline: none; transition: all 0.15s; }
+.search-wrap input:focus { border-color: var(--blue-mid); box-shadow: 0 0 0 3px rgba(25,118,210,0.1); }
+
+/* ===== TABS ===== */
+.tabs { display: flex; gap: 4px; background: var(--gray-100); border-radius: var(--radius-md); padding: 4px; margin-bottom: 1.25rem; }
+.tab-btn { flex: 1; padding: 8px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-size: 13px; font-weight: 600; background: none; color: var(--gray-400); transition: all 0.15s; font-family: var(--font-body); }
+.tab-btn.active { background: var(--white); color: var(--navy); box-shadow: var(--shadow-sm); }
+
+/* ===== MODAL ===== */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1rem; animation: fadeIn 0.15s; }
+.modal-box { background: var(--white); border-radius: var(--radius-xl); width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
+.modal-head { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--gray-100); display: flex; align-items: center; gap: 10px; }
+.modal-head i { font-size: 22px; color: var(--blue); }
+.modal-head h3 { font-size: 16px; font-weight: 700; color: var(--gray-800); }
+.modal-head .close-btn { margin-left: auto; background: none; border: none; font-size: 20px; color: var(--gray-400); cursor: pointer; }
+.modal-body { padding: 1.5rem; }
+.modal-footer { padding: 1rem 1.5rem; border-top: 1px solid var(--gray-100); display: flex; gap: 8px; justify-content: flex-end; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .form-grid.g2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .page { padding: 1rem; }
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .topbar-center { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div id="login-page">
+  <div class="login-wrap">
+    <div class="login-left">
+      <div class="login-left-content">
+        <div class="pk-badge"><i class="ti ti-shield-check" style="font-size:14px;color:var(--accent)"></i><span>Akses Pembimbing Kemasyarakatan</span></div>
+        <h1>Dashboard <em>monitoring</em> klien real-time</h1>
+        <p>Portal khusus Pembimbing Kemasyarakatan (PK) Bapas Kelas I Serang untuk memantau kepatuhan, menerima laporan, dan mengelola semua klien binaan dalam satu platform terintegrasi.</p>
+        <div class="feature-pills">
+          <span class="pill"><i class="ti ti-check"></i> Notifikasi lapor otomatis</span>
+          <span class="pill"><i class="ti ti-check"></i> Rekap kepatuhan klien</span>
+          <span class="pill"><i class="ti ti-check"></i> Verifikasi permohonan PB/CB</span>
+          <span class="pill"><i class="ti ti-check"></i> Jadwal & konseling digital</span>
+          <span class="pill"><i class="ti ti-check"></i> Laporan PDF otomatis</span>
+        </div>
+      </div>
+    </div>
+    <div class="login-right">
+      <div class="login-form-wrap">
+        <div class="login-logo">
+          <div class="login-logo-icon"><i class="ti ti-building-community"></i></div>
+          <div><strong>SiLaras PK</strong><span>Dashboard Pembimbing Kemasyarakatan</span></div>
+        </div>
+        <h2>Masuk ke Dashboard PK</h2>
+        <p>Khusus Pembimbing Kemasyarakatan Bapas Kelas I Serang</p>
+        <div class="info-box"><i class="ti ti-info-circle"></i> Demo: masukkan data apa saja lalu klik Masuk</div>
+        <div class="form-group">
+          <label>NIP / ID PEMBIMBING</label>
+          <div class="input-wrap"><i class="ti ti-id-badge-2"></i><input type="text" placeholder="Nomor Induk Pegawai"></div>
+        </div>
+        <div class="form-group">
+          <label>KATA SANDI</label>
+          <div class="input-wrap"><i class="ti ti-lock"></i><input type="password" placeholder="Kata sandi Anda"></div>
+        </div>
+        <button class="btn-login" onclick="doLogin()"><i class="ti ti-login"></i> Masuk ke Dashboard</button>
+        <p style="font-size:11px;color:var(--gray-400);text-align:center;margin-top:1.5rem;line-height:1.7">
+          <strong style="color:var(--gray-600)">Balai Pemasyarakatan Kelas I Serang</strong><br>
+          Kementerian Imigrasi dan Pemasyarakatan RI
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN APP ===== -->
+<div id="main-app">
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <div class="topbar-logo"><i class="ti ti-building-community"></i></div>
+      <div class="topbar-title"><strong>SiLaras PK</strong><span>Bapas Kelas I Serang · Kemenimipas RI</span></div>
+    </div>
+    <div class="topbar-center">
+      <div class="pk-mode-badge"><i class="ti ti-shield-check" style="font-size:13px"></i> Mode Pembimbing Kemasyarakatan</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-icon-btn" onclick="navigate('notifikasi')"><i class="ti ti-bell"></i><span class="notif-dot" id="notif-dot"></span></div>
+      <div class="topbar-icon-btn"><i class="ti ti-help-circle"></i></div>
+      <div class="user-chip" onclick="navigate('profil')">
+        <div class="user-av">SR</div>
+        <span>Siti Rahayu</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="body-wrap">
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div class="sidebar-group">
+        <div class="sidebar-label">Dashboard</div>
+        <a class="nav-item active" id="nav-beranda" onclick="navigate('beranda')"><i class="ti ti-home"></i> Beranda</a>
+        <a class="nav-item" id="nav-wajiblapor" onclick="navigate('wajiblapor')"><i class="ti ti-scan"></i> Monitoring Lapor<span class="nav-badge nb-red">3 belum</span></a>
+        <a class="nav-item" id="nav-klien" onclick="navigate('klien')"><i class="ti ti-users"></i> Data Klien</a>
+        <a class="nav-item" id="nav-jadwal" onclick="navigate('jadwal')"><i class="ti ti-calendar"></i> Jadwal Bimbingan</a>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-label">Administrasi</div>
+        <a class="nav-item" id="nav-permohonan" onclick="navigate('permohonan')"><i class="ti ti-file-check"></i> Verifikasi PB/CB<span class="nav-badge nb-amber">2 proses</span></a>
+        <a class="nav-item" id="nav-laporan" onclick="navigate('laporan')"><i class="ti ti-chart-bar"></i> Laporan & Rekap</a>
+        <a class="nav-item" id="nav-notifikasi" onclick="navigate('notifikasi')"><i class="ti ti-bell"></i> Notifikasi<span class="nav-badge nb-red" id="notif-count">4</span></a>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-label">Akun</div>
+        <a class="nav-item" id="nav-profil" onclick="navigate('profil')"><i class="ti ti-user"></i> Profil PK</a>
+        <a class="nav-item" onclick="doLogout()"><i class="ti ti-logout"></i> Keluar</a>
+      </div>
+      <div class="sidebar-footer">
+        <div class="pk-profile-card">
+          <div class="av">SR</div>
+          <strong>Siti Rahayu, S.H.</strong>
+          <span>NIP: 19850512 200604 2 001</span>
+          <div class="klien-count">Klien Binaan: <strong>18</strong> orang</div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+      <!-- ===== BERANDA ===== -->
+      <div class="page active" id="page-beranda">
+        <div class="page-header">
+          <h1>Selamat pagi, Bu Siti 👋</h1>
+          <p>Kamis, 08 Mei 2026 · Bapas Kelas I Serang — Ringkasan hari ini</p>
+        </div>
+
+        <div class="alert alert-red">
+          <i class="ti ti-alert-circle"></i>
+          <div style="flex:1">
+            <strong>3 klien belum wajib lapor!</strong>
+            <p>Batas lapor bulan Mei adalah 10 Mei 2026. Segera tindak lanjuti klien yang belum melapor.</p>
+          </div>
+          <button class="btn btn-red btn-sm" onclick="navigate('wajiblapor')" style="flex-shrink:0">Lihat Detail</button>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-card s-blue">
+            <div class="stat-icon" style="background:var(--blue-light)"><i class="ti ti-users" style="color:var(--blue)"></i></div>
+            <div class="val">18</div>
+            <div class="lbl">Total Klien Binaan</div>
+            <div class="sub sub-green"><i class="ti ti-arrow-up" style="font-size:11px"></i> 2 klien baru bulan ini</div>
+          </div>
+          <div class="stat-card s-green">
+            <div class="stat-icon" style="background:var(--green-light)"><i class="ti ti-circle-check" style="color:var(--green)"></i></div>
+            <div class="val">15</div>
+            <div class="lbl">Sudah Wajib Lapor</div>
+            <div class="sub sub-green">83% kepatuhan bulan ini</div>
+          </div>
+          <div class="stat-card s-red">
+            <div class="stat-icon" style="background:var(--red-light)"><i class="ti ti-alert-circle" style="color:var(--red)"></i></div>
+            <div class="val">3</div>
+            <div class="lbl">Belum Wajib Lapor</div>
+            <div class="sub sub-red">Batas: 10 Mei 2026</div>
+          </div>
+          <div class="stat-card s-amber">
+            <div class="stat-icon" style="background:var(--accent-light)"><i class="ti ti-file-text" style="color:#D08000"></i></div>
+            <div class="val">2</div>
+            <div class="lbl">Permohonan Masuk</div>
+            <div class="sub sub-amber">Menunggu verifikasi</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <div class="section-row"><h2><i class="ti ti-clock"></i> Laporan Terbaru Hari Ini</h2><button class="link-btn" onclick="navigate('wajiblapor')">Lihat semua →</button></div>
+            <div class="card">
+              <div class="card-body">
+                <div class="tl">
+                  <div class="tl-item">
+                    <div class="tl-left"><div class="tl-dot green"><i class="ti ti-check"></i></div><div class="tl-line"></div></div>
+                    <div class="tl-content"><strong>Ahmad Subagyo — Wajib Lapor ✓</strong><p>08 Mei 2026, 09:14 WIB · Verifikasi wajah berhasil · No. WL/2026/05/00389</p></div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-left"><div class="tl-dot green"><i class="ti ti-check"></i></div><div class="tl-line"></div></div>
+                    <div class="tl-content"><strong>Budi Santoso — Wajib Lapor ✓</strong><p>08 Mei 2026, 10:02 WIB · Verifikasi wajah berhasil · No. WL/2026/05/00390</p></div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-left"><div class="tl-dot green"><i class="ti ti-check"></i></div><div class="tl-line"></div></div>
+                    <div class="tl-content"><strong>Hendra Kusuma — Wajib Lapor ✓</strong><p>08 Mei 2026, 10:45 WIB · Verifikasi wajah berhasil · No. WL/2026/05/00391</p></div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-left"><div class="tl-dot amber"><i class="ti ti-file-plus"></i></div><div class="tl-line"></div></div>
+                    <div class="tl-content"><strong>Rudi Hartono — Permohonan PB Masuk</strong><p>08 Mei 2026, 11:20 WIB · No. PB/2026/05/00047 · Menunggu verifikasi</p></div>
+                  </div>
+                  <div class="tl-item">
+                    <div class="tl-left"><div class="tl-dot red"><i class="ti ti-alert-circle"></i></div></div>
+                    <div class="tl-content"><strong>Dedi Prasetyo — Belum Lapor ⚠</strong><p>Batas waktu 10 Mei 2026 · Notifikasi pengingat sudah dikirim ke klien</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="section-row"><h2><i class="ti ti-chart-pie"></i> Kepatuhan Bulan Ini</h2></div>
+            <div class="card">
+              <div class="card-body">
+                <div style="text-align:center;margin-bottom:1.25rem">
+                  <div style="font-size:48px;font-weight:800;color:var(--navy);line-height:1">83%</div>
+                  <div style="font-size:13px;color:var(--gray-400)">Tingkat kepatuhan wajib lapor Mei 2026</div>
+                </div>
+                <div class="prog-wrap">
+                  <div class="prog-label"><strong>Sudah Lapor</strong><span>15 / 18 klien</span></div>
+                  <div class="prog-bar"><div class="prog-fill" style="width:83%;background:var(--green)"></div></div>
+                </div>
+                <div class="prog-wrap">
+                  <div class="prog-label"><strong>Belum Lapor</strong><span>3 / 18 klien</span></div>
+                  <div class="prog-bar"><div class="prog-fill" style="width:17%;background:var(--red)"></div></div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:1rem">
+                  <div style="flex:1;background:var(--green-light);border-radius:var(--radius-md);padding:10px;text-align:center">
+                    <div style="font-size:20px;font-weight:800;color:var(--green)">100%</div>
+                    <div style="font-size:11px;color:var(--green)">April 2026</div>
+                  </div>
+                  <div style="flex:1;background:var(--blue-light);border-radius:var(--radius-md);padding:10px;text-align:center">
+                    <div style="font-size:20px;font-weight:800;color:var(--blue)">94%</div>
+                    <div style="font-size:11px;color:var(--blue)">Maret 2026</div>
+                  </div>
+                  <div style="flex:1;background:var(--accent-light);border-radius:var(--radius-md);padding:10px;text-align:center">
+                    <div style="font-size:20px;font-weight:800;color:#D08000">89%</div>
+                    <div style="font-size:11px;color:#D08000">Feb 2026</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-row"><h2><i class="ti ti-calendar"></i> Jadwal Hari Ini</h2></div>
+            <div class="card">
+              <div class="card-body" style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--blue-light);border-radius:var(--radius-md)">
+                  <div style="width:40px;height:40px;background:var(--blue);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:1.2;flex-shrink:0">09<br>WIB</div>
+                  <div><strong style="font-size:13px;color:var(--navy)">Konseling: Ahmad Subagyo</strong><br><span style="font-size:11px;color:var(--blue)">Online via Zoom · 09.00–10.00</span></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--green-light);border-radius:var(--radius-md)">
+                  <div style="width:40px;height:40px;background:var(--green);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:1.2;flex-shrink:0">13<br>WIB</div>
+                  <div><strong style="font-size:13px;color:#0D5535">Bimbingan Kelompok (5 klien)</strong><br><span style="font-size:11px;color:var(--green)">Luring · Ruang 3 Bapas</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== MONITORING WAJIB LAPOR ===== -->
+      <div class="page" id="page-wajiblapor">
+        <div class="page-header">
+          <h1>Monitoring Wajib Lapor</h1>
+          <p>Status pelaporan seluruh klien binaan bulan Mei 2026</p>
+        </div>
+
+        <div class="alert alert-red" style="margin-bottom:1.5rem">
+          <i class="ti ti-alert-circle"></i>
+          <div>
+            <strong>3 klien belum wajib lapor — batas waktu 10 Mei 2026</strong>
+            <p>Notifikasi pengingat otomatis sudah dikirim. Anda dapat menghubungi klien langsung melalui tombol di bawah.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <i class="ti ti-scan"></i>
+            <h3>Rekap Wajib Lapor Mei 2026</h3>
+            <div class="ml" style="display:flex;gap:8px">
+              <button class="btn btn-outline btn-sm"><i class="ti ti-download"></i> Ekspor PDF</button>
+              <button class="btn btn-primary btn-sm"><i class="ti ti-send"></i> Kirim Notifikasi Massal</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="search-wrap" style="margin-bottom:1rem">
+              <i class="ti ti-search"></i>
+              <input type="text" placeholder="Cari nama atau nomor register klien...">
+            </div>
+            <div style="overflow-x:auto">
+              <table class="klien-table">
+                <thead>
+                  <tr>
+                    <th>Klien</th>
+                    <th>Status Lapor</th>
+                    <th>Waktu Lapor</th>
+                    <th>Metode</th>
+                    <th>No. Bukti</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="wl-table">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== DATA KLIEN ===== -->
+      <div class="page" id="page-klien">
+        <div class="page-header">
+          <h1>Data Klien Binaan</h1>
+          <p>18 klien aktif dalam pembimbingan Anda</p>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <i class="ti ti-users"></i>
+            <h3>Daftar Klien Aktif</h3>
+            <div class="ml" style="display:flex;gap:8px">
+              <button class="btn btn-outline btn-sm"><i class="ti ti-download"></i> Ekspor</button>
+              <button class="btn btn-primary btn-sm" onclick="showModal('tambah-klien')"><i class="ti ti-plus"></i> Tambah Klien</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div style="display:flex;gap:10px;margin-bottom:1rem">
+              <div class="search-wrap" style="flex:1">
+                <i class="ti ti-search"></i>
+                <input type="text" placeholder="Cari klien...">
+              </div>
+              <select style="padding:10px 12px;border-radius:var(--radius-md);border:1.5px solid var(--gray-200);font-size:13px;font-family:var(--font-body);color:var(--gray-600);outline:none">
+                <option>Semua Jenis</option>
+                <option>Pembebasan Bersyarat</option>
+                <option>Cuti Bersyarat</option>
+                <option>Asimilasi</option>
+              </select>
+            </div>
+            <div style="overflow-x:auto">
+              <table class="klien-table">
+                <thead>
+                  <tr><th>Klien</th><th>Jenis Bimbingan</th><th>Mulai</th><th>Berakhir</th><th>Kepatuhan</th><th>Aksi</th></tr>
+                </thead>
+                <tbody id="klien-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== JADWAL ===== -->
+      <div class="page" id="page-jadwal">
+        <div class="page-header">
+          <h1>Jadwal Bimbingan & Konseling</h1>
+          <p>Kelola semua jadwal kegiatan pembimbingan</p>
+        </div>
+        <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+          <button class="btn btn-primary" onclick="showModal('tambah-jadwal')"><i class="ti ti-plus"></i> Tambah Jadwal</button>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab(this,'tab-jmendatang')">Mendatang</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-jselesai')">Selesai</button>
+        </div>
+        <div id="tab-jmendatang">
+          <div class="card">
+            <div class="card-body" style="display:flex;flex-direction:column;gap:8px">
+              ${[
+                ['10','Mei','Wajib Lapor Bulanan — Mei 2026','09.00–10.00 · Bapas atau Online · Semua klien','tag-wajib','Wajib'],
+                ['15','Mei','Sesi Konseling Individual — Ahmad Subagyo','13.00–14.00 · Zoom Meeting','tag-online','Online'],
+                ['22','Mei','Bimbingan Kelompok (5 klien)','10.00–11.30 · Ruang 3 Bapas Serang','tag-luring','Luring'],
+                ['05','Jun','Evaluasi Litmas Triwulan','09.00–10.30 · Ruang PK Bapas Serang','tag-wajib','Wajib'],
+              ].map(([d,m,title,sub,tag,label]) => `
+              <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--gray-50);border-radius:var(--radius-md);border:1px solid var(--gray-100)">
+                <div style="text-align:center;min-width:38px"><div style="font-size:20px;font-weight:800;color:var(--navy)">${d}</div><div style="font-size:10px;color:var(--gray-400);text-transform:uppercase;font-weight:600">${m}</div></div>
+                <div style="width:1px;height:38px;background:var(--gray-200)"></div>
+                <div style="flex:1"><strong style="font-size:13px;font-weight:600;color:var(--gray-800)">${title}</strong><br><span style="font-size:12px;color:var(--gray-400)">${sub}</span></div>
+                <span class="badge ${tag}">${label}</span>
+                <button class="btn btn-outline btn-sm"><i class="ti ti-edit"></i></button>
+              </div>`).join('')}
+            </div>
+          </div>
+        </div>
+        <div id="tab-jselesai" style="display:none">
+          <div class="card">
+            <div class="card-body" style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--gray-50);border-radius:var(--radius-md);border:1px solid var(--gray-100);opacity:0.7">
+                <div style="text-align:center;min-width:38px"><div style="font-size:20px;font-weight:800;color:var(--navy)">10</div><div style="font-size:10px;color:var(--gray-400);text-transform:uppercase">Apr</div></div>
+                <div style="width:1px;height:38px;background:var(--gray-200)"></div>
+                <div style="flex:1"><strong style="font-size:13px;color:var(--gray-800)">Wajib Lapor Bulanan — April 2026 ✓</strong><br><span style="font-size:12px;color:var(--gray-400)">Selesai · 18/18 klien hadir · Kepatuhan 100%</span></div>
+                <span class="badge b-aktif">Selesai</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== VERIFIKASI PB/CB ===== -->
+      <div class="page" id="page-permohonan">
+        <div class="page-header">
+          <h1>Verifikasi Permohonan PB / CB</h1>
+          <p>Tinjau dan proses permohonan pembebasan bersyarat dari klien</p>
+        </div>
+        <div class="card">
+          <div class="card-head"><i class="ti ti-file-check"></i><h3>Daftar Permohonan Masuk</h3></div>
+          <div class="card-body">
+            <div style="overflow-x:auto">
+              <table class="klien-table">
+                <thead><tr><th>Klien</th><th>Jenis</th><th>Tanggal Masuk</th><th>No. Permohonan</th><th>Status</th><th>Aksi</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><div class="klien-name"><div class="klien-av" style="background:#1565C0">RH</div><div><strong>Rudi Hartono</strong><span>W27.PAS.PK.03.01.2024</span></div></div></td>
+                    <td><span class="badge b-pb">Pem. Bersyarat</span></td>
+                    <td>08 Mei 2026</td>
+                    <td style="font-family:monospace;font-size:12px">PB/2026/05/00047</td>
+                    <td><span class="badge b-proses">Dalam Proses</span></td>
+                    <td>
+                      <div style="display:flex;gap:6px">
+                        <button class="btn btn-primary btn-sm" onclick="showModal('verif-pb')"><i class="ti ti-eye"></i> Tinjau</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><div class="klien-name"><div class="klien-av" style="background:#6B21A8">SW</div><div><strong>Slamet Widodo</strong><span>W27.PAS.PK.05.01.2024</span></div></div></td>
+                    <td><span class="badge b-cb">Cuti Bersyarat</span></td>
+                    <td>06 Mei 2026</td>
+                    <td style="font-family:monospace;font-size:12px">CB/2026/05/00021</td>
+                    <td><span class="badge b-proses">Dalam Proses</span></td>
+                    <td>
+                      <div style="display:flex;gap:6px">
+                        <button class="btn btn-primary btn-sm" onclick="showModal('verif-pb')"><i class="ti ti-eye"></i> Tinjau</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== LAPORAN ===== -->
+      <div class="page" id="page-laporan">
+        <div class="page-header">
+          <h1>Laporan & Rekap</h1>
+          <p>Laporan kepatuhan dan kinerja pembimbingan otomatis</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><i class="ti ti-chart-bar"></i><h3>Rekap Kepatuhan Bulanan</h3></div>
+            <div class="card-body">
+              ${[['Mei 2026','83%','15/18','var(--accent)'],['Apr 2026','100%','18/18','var(--green)'],['Mar 2026','94%','17/18','var(--green)'],['Feb 2026','89%','16/18','var(--blue)'],['Jan 2026','83%','15/18','var(--accent)']].map(([bln,pct,frac,col])=>`
+              <div class="prog-wrap">
+                <div class="prog-label"><strong>${bln}</strong><span>${frac} klien · ${pct}</span></div>
+                <div class="prog-bar"><div class="prog-fill" style="width:${pct};background:${col}"></div></div>
+              </div>`).join('')}
+              <div style="margin-top:1rem"><button class="btn btn-outline btn-sm"><i class="ti ti-download"></i> Unduh Rekap PDF</button></div>
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-head"><i class="ti ti-file-analytics"></i><h3>Laporan Tersedia</h3></div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:8px">
+                ${[
+                  ['Rekap Wajib Lapor Mei 2026','Dibuat otomatis','ti-file-text','var(--blue-light)','var(--blue)'],
+                  ['Laporan Kinerja PK Triwulan I','Jan–Mar 2026','ti-chart-pie','var(--green-light)','var(--green)'],
+                  ['Daftar Klien Aktif','18 klien · Update terbaru','ti-users','var(--accent-light)','#D08000'],
+                  ['Rekap Permohonan PB/CB','2 diproses · 5 disetujui','ti-file-check','var(--purple-light)','var(--purple)'],
+                ].map(([title,sub,ico,bg,col])=>`
+                <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--gray-50);border-radius:var(--radius-md);border:1px solid var(--gray-100)">
+                  <div style="width:36px;height:36px;border-radius:var(--radius-sm);background:${bg};display:flex;align-items:center;justify-content:center;font-size:18px;color:${col};flex-shrink:0"><i class="ti ${ico}"></i></div>
+                  <div style="flex:1"><strong style="font-size:13px;color:var(--gray-800)">${title}</strong><br><span style="font-size:11px;color:var(--gray-400)">${sub}</span></div>
+                  <button class="btn btn-outline btn-sm"><i class="ti ti-download"></i></button>
+                </div>`).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== NOTIFIKASI ===== -->
+      <div class="page" id="page-notifikasi">
+        <div class="page-header">
+          <h1>Notifikasi</h1>
+          <p>Aktivitas terbaru dari klien binaan Anda</p>
+        </div>
+        <div style="margin-bottom:1rem;display:flex;justify-content:flex-end">
+          <button class="btn btn-outline btn-sm" onclick="clearNotif()"><i class="ti ti-checks"></i> Tandai semua dibaca</button>
+        </div>
+        <div class="notif-item unread">
+          <div class="notif-ico ni-red"><i class="ti ti-alert-circle"></i></div>
+          <div style="flex:1">
+            <strong>Dedi Prasetyo belum wajib lapor</strong>
+            <p>Klien W27.PAS.PK.07.01.2024 belum melakukan wajib lapor bulan Mei. Batas waktu 10 Mei 2026. Sistem telah mengirim notifikasi pengingat ke klien.</p>
+            <span class="notif-time">08 Mei 2026, 08.00 WIB</span>
+          </div>
+          <button class="btn btn-red btn-sm" style="flex-shrink:0">Hubungi</button>
+        </div>
+        <div class="notif-item unread">
+          <div class="notif-ico ni-red"><i class="ti ti-alert-circle"></i></div>
+          <div style="flex:1">
+            <strong>Sugeng Riyadi belum wajib lapor</strong>
+            <p>Klien W27.PAS.PK.11.01.2024 belum melakukan wajib lapor bulan Mei. Batas waktu 10 Mei 2026.</p>
+            <span class="notif-time">08 Mei 2026, 08.00 WIB</span>
+          </div>
+          <button class="btn btn-red btn-sm" style="flex-shrink:0">Hubungi</button>
+        </div>
+        <div class="notif-item unread">
+          <div class="notif-ico ni-amber"><i class="ti ti-file-plus"></i></div>
+          <div style="flex:1">
+            <strong>Permohonan PB baru dari Rudi Hartono</strong>
+            <p>Klien mengajukan permohonan Pembebasan Bersyarat No. PB/2026/05/00047. Segera tinjau kelengkapan dokumen.</p>
+            <span class="notif-time">08 Mei 2026, 11.20 WIB</span>
+          </div>
+          <button class="btn btn-primary btn-sm" style="flex-shrink:0" onclick="navigate('permohonan')">Tinjau</button>
+        </div>
+        <div class="notif-item unread">
+          <div class="notif-ico ni-green"><i class="ti ti-circle-check"></i></div>
+          <div>
+            <strong>Ahmad Subagyo — Wajib lapor berhasil ✓</strong>
+            <p>Klien telah berhasil melakukan wajib lapor online pukul 09:14 WIB. Verifikasi biometrik: BERHASIL. No. WL/2026/05/00389.</p>
+            <span class="notif-time">08 Mei 2026, 09.14 WIB</span>
+          </div>
+        </div>
+        <div class="notif-item read">
+          <div class="notif-ico ni-green"><i class="ti ti-circle-check"></i></div>
+          <div>
+            <strong>Budi Santoso — Wajib lapor berhasil ✓</strong>
+            <p>Klien telah berhasil melakukan wajib lapor online pukul 10:02 WIB. No. WL/2026/05/00390.</p>
+            <span class="notif-time">08 Mei 2026, 10.02 WIB</span>
+          </div>
+        </div>
+        <div class="notif-item read">
+          <div class="notif-ico ni-blue"><i class="ti ti-calendar-check"></i></div>
+          <div>
+            <strong>Jadwal konseling Ahmad Subagyo dikonfirmasi</strong>
+            <p>Sesi konseling 15 Mei 2026 pukul 13.00 WIB via Zoom telah dikonfirmasi oleh klien.</p>
+            <span class="notif-time">07 Mei 2026, 16.30 WIB</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== PROFIL PK ===== -->
+      <div class="page" id="page-profil">
+        <div class="page-header"><h1>Profil Pembimbing Kemasyarakatan</h1><p>Data diri dan informasi jabatan</p></div>
+        <div style="background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:var(--radius-xl);padding:2rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem">
+          <div style="width:72px;height:72px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:var(--navy);flex-shrink:0;border:3px solid rgba(255,255,255,0.3)">SR</div>
+          <div>
+            <h2 style="font-size:20px;font-weight:700;color:#fff;margin-bottom:4px">Siti Rahayu, S.H.</h2>
+            <p style="font-size:13px;color:rgba(255,255,255,0.65);margin-bottom:8px">NIP: 19850512 200604 2 001</p>
+            <span style="background:rgba(255,255,255,0.15);border-radius:100px;padding:4px 12px;font-size:12px;color:#fff;font-weight:600">Pembimbing Kemasyarakatan Ahli Muda</span>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><i class="ti ti-user"></i><h3>Data Diri</h3></div>
+            <div class="card-body">
+              ${[['Nama','Siti Rahayu, S.H.'],['NIP','19850512 200604 2 001'],['Jenis Kelamin','Perempuan'],['Pendidikan','S1 Hukum'],['Jabatan','PK Ahli Muda'],['Unit Kerja','Bapas Kelas I Serang'],['No. HP','0812-xxxx-xxxx'],['Email','siti.rahayu@kemenimipas.go.id']].map(([k,v])=>`<div class="detail-row"><span>${k}</span><strong>${v}</strong></div>`).join('')}
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><i class="ti ti-chart-bar"></i><h3>Statistik Kinerja</h3></div>
+            <div class="card-body">
+              ${[['Total Klien Binaan','18 orang'],['Klien PB Aktif','12 orang'],['Klien CB Aktif','4 orang'],['Klien Asimilasi','2 orang'],['Kepatuhan Bulan Ini','83%'],['Permohonan Diproses','2 pengajuan'],['Sesi Konseling Bulan Ini','8 sesi'],['Masa Kerja di Bapas','20 tahun']].map(([k,v])=>`<div class="detail-row"><span>${k}</span><strong>${v}</strong></div>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ===== MODALS ===== -->
+<div id="modal-verif-pb" style="display:none">
+  <div class="modal-overlay" onclick="if(event.target===this)closeModal('verif-pb')">
+    <div class="modal-box">
+      <div class="modal-head"><i class="ti ti-file-check"></i><h3>Tinjau Permohonan PB</h3><button class="close-btn" onclick="closeModal('verif-pb')"><i class="ti ti-x"></i></button></div>
+      <div class="modal-body">
+        <div class="alert alert-amber" style="margin-bottom:1.25rem"><i class="ti ti-clock"></i><div><strong>Menunggu verifikasi PK</strong><p>Permohonan masuk 08 Mei 2026 · No. PB/2026/05/00047</p></div></div>
+        ${[['Nama Klien','Rudi Hartono'],['No. Register','W27.PAS.PK.03.01.2024'],['Jenis','Pembebasan Bersyarat'],['Tanggal Masuk','08 Mei 2026'],['Alamat Tujuan','Jl. Raya Cilegon No.88, Serang'],['Penjamin','Bambang Hartono (Ayah)'],['Pekerjaan','Wirausaha'],['Alasan','Berkelakuan baik, telah menyelesaikan 2/3 masa pidana, punya kegiatan produktif dan dukungan keluarga penuh.']].map(([k,v])=>`<div class="detail-row"><span>${k}</span><strong style="max-width:60%;text-align:right">${v}</strong></div>`).join('')}
+        <div class="fg" style="margin-top:1rem">
+          <label>CATATAN / REKOMENDASI PK</label>
+          <textarea placeholder="Tuliskan catatan atau rekomendasi untuk permohonan ini..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('verif-pb')">Batal</button>
+        <button class="btn" style="background:var(--red);color:#fff" onclick="closeModal('verif-pb')"><i class="ti ti-x"></i> Tolak</button>
+        <button class="btn btn-green" onclick="closeModal('verif-pb')"><i class="ti ti-check"></i> Setujui & Teruskan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal-tambah-jadwal" style="display:none">
+  <div class="modal-overlay" onclick="if(event.target===this)closeModal('tambah-jadwal')">
+    <div class="modal-box">
+      <div class="modal-head"><i class="ti ti-calendar-plus"></i><h3>Tambah Jadwal Bimbingan</h3><button class="close-btn" onclick="closeModal('tambah-jadwal')"><i class="ti ti-x"></i></button></div>
+      <div class="modal-body">
+        <div class="form-grid g2">
+          <div class="fg" style="grid-column:1/-1"><label>JUDUL KEGIATAN</label><input type="text" placeholder="Nama kegiatan..."></div>
+          <div class="fg"><label>TANGGAL</label><input type="date"></div>
+          <div class="fg"><label>WAKTU</label><input type="time"></div>
+          <div class="fg"><label>JENIS</label><select><option>Wajib Lapor</option><option>Konseling Individual</option><option>Bimbingan Kelompok</option><option>Evaluasi Litmas</option></select></div>
+          <div class="fg"><label>METODE</label><select><option>Luring (Tatap Muka)</option><option>Online (Zoom)</option><option>Hybrid</option></select></div>
+          <div class="fg" style="grid-column:1/-1"><label>KLIEN</label><select><option>Semua Klien</option><option>Ahmad Subagyo</option><option>Budi Santoso</option><option>Hendra Kusuma</option></select></div>
+          <div class="fg" style="grid-column:1/-1"><label>KETERANGAN</label><textarea placeholder="Informasi tambahan..."></textarea></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('tambah-jadwal')">Batal</button>
+        <button class="btn btn-primary" onclick="closeModal('tambah-jadwal')"><i class="ti ti-check"></i> Simpan Jadwal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal-tambah-klien" style="display:none">
+  <div class="modal-overlay" onclick="if(event.target===this)closeModal('tambah-klien')">
+    <div class="modal-box">
+      <div class="modal-head"><i class="ti ti-user-plus"></i><h3>Tambah Klien Baru</h3><button class="close-btn" onclick="closeModal('tambah-klien')"><i class="ti ti-x"></i></button></div>
+      <div class="modal-body">
+        <div class="form-grid g2">
+          <div class="fg" style="grid-column:1/-1"><label>NAMA LENGKAP</label><input type="text" placeholder="Nama lengkap klien"></div>
+          <div class="fg"><label>NIK</label><input type="text" placeholder="16 digit NIK"></div>
+          <div class="fg"><label>NO. REGISTER</label><input type="text" placeholder="W27.PAS.PK..."></div>
+          <div class="fg"><label>JENIS BIMBINGAN</label><select><option>Pembebasan Bersyarat</option><option>Cuti Bersyarat</option><option>Asimilasi</option></select></div>
+          <div class="fg"><label>TANGGAL MULAI</label><input type="date"></div>
+          <div class="fg"><label>TANGGAL BERAKHIR</label><input type="date"></div>
+          <div class="fg" style="grid-column:1/-1"><label>NO. HP KLIEN</label><input type="tel" placeholder="08xxxxxxxxxx"></div>
+          <div class="fg" style="grid-column:1/-1"><label>ALAMAT</label><textarea placeholder="Alamat lengkap klien..."></textarea></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('tambah-klien')">Batal</button>
+        <button class="btn btn-primary" onclick="closeModal('tambah-klien')"><i class="ti ti-check"></i> Simpan Klien</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const klienData = [
+  { id: 1, nama: 'Ahmad Subagyo', reg: 'W27.PAS.PK.01.01.2024', jenis: 'PB', mulai: '12 Jan 2026', berakhir: '12 Jan 2027', kepatuhan: 100, lapor: 'sudah', waktu: '08 Mei, 09:14', metode: 'Online', bukti: 'WL/2026/05/00389', color: '#1565C0' },
+  { id: 2, nama: 'Budi Santoso', reg: 'W27.PAS.PK.02.01.2024', jenis: 'PB', mulai: '15 Jan 2026', berakhir: '15 Jan 2027', kepatuhan: 100, lapor: 'sudah', waktu: '08 Mei, 10:02', metode: 'Online', bukti: 'WL/2026/05/00390', color: '#1B8A5A' },
+  { id: 3, nama: 'Hendra Kusuma', reg: 'W27.PAS.PK.04.01.2024', jenis: 'CB', mulai: '20 Jan 2026', berakhir: '20 Jul 2026', kepatuhan: 95, lapor: 'sudah', waktu: '08 Mei, 10:45', metode: 'Online', bukti: 'WL/2026/05/00391', color: '#6B21A8' },
+  { id: 4, nama: 'Rudi Hartono', reg: 'W27.PAS.PK.03.01.2024', jenis: 'PB', mulai: '10 Jan 2026', berakhir: '10 Jan 2027', kepatuhan: 90, lapor: 'sudah', waktu: '07 Mei, 14:30', metode: 'Luring', bukti: 'WL/2026/05/00385', color: '#D08000' },
+  { id: 5, nama: 'Dedi Prasetyo', reg: 'W27.PAS.PK.07.01.2024', jenis: 'PB', mulai: '05 Feb 2026', berakhir: '05 Feb 2027', kepatuhan: 75, lapor: 'belum', waktu: '—', metode: '—', bukti: '—', color: '#C0392B' },
+  { id: 6, nama: 'Sugeng Riyadi', reg: 'W27.PAS.PK.11.01.2024', jenis: 'CB', mulai: '18 Feb 2026', berakhir: '18 Aug 2026', kepatuhan: 80, lapor: 'belum', waktu: '—', metode: '—', bukti: '—', color: '#C0392B' },
+  { id: 7, nama: 'Wahyu Santosa', reg: 'W27.PAS.PK.09.01.2024', jenis: 'Asimilasi', mulai: '01 Mar 2026', berakhir: '01 Sep 2026', kepatuhan: 85, lapor: 'belum', waktu: '—', metode: '—', bukti: '—', color: '#C0392B' },
+  { id: 8, nama: 'Eko Setiawan', reg: 'W27.PAS.PK.06.01.2024', jenis: 'PB', mulai: '08 Jan 2026', berakhir: '08 Jan 2027', kepatuhan: 100, lapor: 'sudah', waktu: '07 Mei, 11:00', metode: 'Online', bukti: 'WL/2026/05/00383', color: '#1565C0' },
+];
+
+function initTables() {
+  // WL Table
+  const wlTbody = document.getElementById('wl-table');
+  if (wlTbody) {
+    wlTbody.innerHTML = klienData.map(k => `
+      <tr>
+        <td><div class="klien-name"><div class="klien-av" style="background:${k.color}">${k.nama.split(' ').map(n=>n[0]).join('').slice(0,2)}</div><div><strong>${k.nama}</strong><span>${k.reg}</span></div></div></td>
+        <td>${k.lapor === 'sudah' ? '<span class="badge b-sudah">Sudah Lapor</span>' : '<span class="badge b-belum">Belum Lapor</span>'}</td>
+        <td style="font-size:12px">${k.waktu}</td>
+        <td><span style="font-size:12px;color:var(--gray-600)">${k.metode}</span></td>
+        <td style="font-family:monospace;font-size:11px;color:var(--gray-400)">${k.bukti}</td>
+        <td>
+          ${k.lapor === 'belum'
+            ? `<button class="btn btn-red btn-sm"><i class="ti ti-send"></i> Kirim Pengingat</button>`
+            : `<button class="btn btn-outline btn-sm"><i class="ti ti-file-text"></i> Lihat Laporan</button>`
+          }
+        </td>
+      </tr>`).join('');
+  }
+
+  // Klien Table
+  const klienTbody = document.getElementById('klien-table');
+  if (klienTbody) {
+    klienTbody.innerHTML = klienData.map(k => `
+      <tr>
+        <td><div class="klien-name"><div class="klien-av" style="background:${k.color}">${k.nama.split(' ').map(n=>n[0]).join('').slice(0,2)}</div><div><strong>${k.nama}</strong><span>${k.reg}</span></div></div></td>
+        <td><span class="badge ${k.jenis==='PB'?'b-pb':k.jenis==='CB'?'b-cb':'b-aktif'}">${k.jenis==='PB'?'Pem. Bersyarat':k.jenis==='CB'?'Cuti Bersyarat':'Asimilasi'}</span></td>
+        <td style="font-size:12px">${k.mulai}</td>
+        <td style="font-size:12px">${k.berakhir}</td>
+        <td>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="flex:1;height:6px;background:var(--gray-100);border-radius:100px;overflow:hidden;min-width:60px">
+              <div style="height:100%;width:${k.kepatuhan}%;background:${k.kepatuhan===100?'var(--green)':k.kepatuhan>=85?'var(--blue)':'var(--accent)'};border-radius:100px"></div>
+            </div>
+            <span style="font-size:12px;font-weight:700;color:${k.kepatuhan===100?'var(--green)':k.kepatuhan>=85?'var(--blue)':'var(--accent)'}">${k.kepatuhan}%</span>
+          </div>
+        </td>
+        <td><div style="display:flex;gap:6px">
+          <button class="btn btn-primary btn-sm"><i class="ti ti-eye"></i> Detail</button>
+          <button class="btn btn-outline btn-sm"><i class="ti ti-message"></i></button>
+        </div></td>
+      </tr>`).join('');
+  }
+}
+
+function navigate(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const pg = document.getElementById('page-' + page);
+  if (pg) pg.classList.add('active');
+  const nav = document.getElementById('nav-' + page);
+  if (nav) nav.classList.add('active');
+  window.scrollTo(0, 0);
+  if (page === 'notifikasi') clearNotif();
+}
+
+function switchTab(btn, id) {
+  btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  let el = btn.parentElement.nextElementSibling;
+  while (el) { if (el.id && el.id.startsWith('tab-')) el.style.display = 'none'; el = el.nextElementSibling; }
+  const t = document.getElementById(id);
+  if (t) t.style.display = 'block';
+}
+
+function showModal(id) {
+  const m = document.getElementById('modal-' + id);
+  if (m) m.style.display = 'flex';
+}
+
+function closeModal(id) {
+  const m = document.getElementById('modal-' + id);
+  if (m) m.style.display = 'none';
+}
+
+function clearNotif() {
+  document.getElementById('notif-dot').style.display = 'none';
+  const c = document.getElementById('notif-count');
+  if (c) c.style.display = 'none';
+  document.querySelectorAll('.notif-item.unread').forEach(n => n.classList.replace('unread','read'));
+}
+
+function doLogin() {
+  document.getElementById('login-page').style.display = 'none';
+  document.getElementById('main-app').style.display = 'block';
+  initTables();
+}
+
+function doLogout() {
+  document.getElementById('main-app').style.display = 'none';
+  document.getElementById('login-page').style.display = 'block';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('login-page').style.display !== 'none') doLogin();
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay').forEach(m => m.parentElement.style.display = 'none');
+});
+</script>
+</body>
+</html>
